@@ -65,7 +65,7 @@ If(WIN32)
     Set(CMAKE_CXX_FLAGS_RELEASE "/Od /Ob0")
 Endif()
 
-Set(CMAKE_CXX_FLAGS "-m32")
+Set(CMAKE_CXX_FLAGS "-m32 -std=c++17")
 
 # Create a static library
 Add_Library(DynamicHooks STATIC ${DYNAMICHOOKS_FILES})
@@ -83,5 +83,5 @@ Include_Directories(thirdparty/AsmJit/include)
 If(WIN32)
     Target_Link_Libraries(DynamicHooks ../../thirdparty/AsmJit/lib/AsmJit)
 Else()
-    Target_Link_Libraries(DynamicHooks ${CMAKE_SOURCE_DIR}/thirdparty/AsmJit/lib/libAsmJit.a)
+    Target_Link_Libraries(DynamicHooks ${CMAKE_SOURCE_DIR}/thirdparty/AsmJit/lib/libasmjit.so)
 Endif()

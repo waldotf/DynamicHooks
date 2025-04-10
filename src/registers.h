@@ -36,6 +36,7 @@
 // >> INCLUDES
 // ============================================================================
 #include <stdlib.h>
+#include <stdint.h>
 #include <list>
 
 
