@@ -13,7 +13,7 @@ Set(CONVENTION_HEADERS
     conventions/x86MsThiscall.h
     conventions/x86MsStdcall.h
     conventions/x86MsFastcall.h
-    
+
     conventions/x86GccCdecl.h
     conventions/x86GccThiscall.h
 )
@@ -70,6 +70,12 @@ Set(CMAKE_CXX_FLAGS "-m32 -std=c++17")
 # Create a static library
 Add_Library(DynamicHooks STATIC ${DYNAMICHOOKS_FILES})
 
+# =============================================================================
+# >> DEFINITIONS
+# =============================================================================
+Add_Definitions(
+    -DASMJIT_STATIC=1
+)
 
 # =============================================================================
 # >> INCLUDES
@@ -83,5 +89,5 @@ Include_Directories(thirdparty/AsmJit/include)
 If(WIN32)
     Target_Link_Libraries(DynamicHooks ../../thirdparty/AsmJit/lib/AsmJit)
 Else()
-    Target_Link_Libraries(DynamicHooks ${CMAKE_SOURCE_DIR}/thirdparty/AsmJit/lib/libasmjit.so)
+    Target_Link_Libraries(DynamicHooks ${CMAKE_SOURCE_DIR}/thirdparty/AsmJit/lib/libasmjit.a)
 Endif()
